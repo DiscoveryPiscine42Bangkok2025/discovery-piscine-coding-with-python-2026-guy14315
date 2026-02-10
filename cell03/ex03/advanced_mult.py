@@ -8,6 +8,6 @@ while i <= 10:
     j = 0
     while j <= 10:
         print(f' {i * j}', end=' ')
-        j+=1
+        j += 1
     print()
     i += 1
