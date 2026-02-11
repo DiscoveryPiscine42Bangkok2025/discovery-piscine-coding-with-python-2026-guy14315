@@ -8,7 +8,7 @@ else:
     param_length = len(sys.argv) - 1
     print(f'parameters: {param_length}')
 
-    for i in range(0, len(sys.argv)):
+    for i in range(1, len(sys.argv)):
         word = sys.argv[i]
         count = len(sys.argv[i])
         print(f"{word}: {count}")
