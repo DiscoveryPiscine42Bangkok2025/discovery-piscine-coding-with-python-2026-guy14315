@@ -2,7 +2,7 @@ def checkmate(board):
 
     ## Empty board
     if not board:
-        print("Fail")
+        print("Error empty board")
         return
 
     rows_str = [line.strip() for line in board.strip().splitlines()]
@@ -18,8 +18,7 @@ def checkmate(board):
                 if char == "K":
                     king_count += 1
             else:
-                print("Error invalid piece")
-                return
+                clean_row.append('.')
         rows.append(clean_row)
 
     if king_count != 1:
@@ -27,7 +26,7 @@ def checkmate(board):
         return
 
     if not rows or len(rows) != len(rows[0]):
-        print("Fail")
+        print("Error wrong format")
         return
 
     ischeck = False
@@ -35,7 +34,7 @@ def checkmate(board):
     for i in range(len(rows)):
 
         if len(rows[i]) != len(rows):
-            print("Fail")
+            print("Error wrong format")
             return
 
         for j in range(len(rows[i])):
