@@ -7,16 +7,24 @@ def checkmate(board):
 
     rows_str = [line.strip() for line in board.strip().splitlines()]
 
-    # Clean the board with unknown char to '.'
+    # Check invalid char and number of king
     rows = []
+    king_count = 0
     for line in rows_str:
         clean_row = []
         for char in line:
-            if char in "KQBRP":
+            if char in "KQBRP.":
                 clean_row.append(char)
+                if char == "K":
+                    king_count += 1
             else:
-                clean_row.append('.')
+                print("Error invalid piece")
+                return
         rows.append(clean_row)
+
+    if king_count != 1:
+        print("Error")
+        return
 
     if not rows or len(rows) != len(rows[0]):
         print("Fail")
