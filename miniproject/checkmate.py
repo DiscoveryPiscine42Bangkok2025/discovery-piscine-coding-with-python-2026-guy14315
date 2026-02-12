@@ -1,8 +1,8 @@
 def checkmate(board):
 
-    ## Empty board
+    # Empty board
     if not board:
-        print("Error empty board")
+        print("Error empty board.")
         return
 
     rows_str = [line.strip() for line in board.strip().splitlines()]
@@ -11,43 +11,46 @@ def checkmate(board):
     rows = []
     king_count = 0
     for line in rows_str:
+        if len(rows_str) != len(line): # Check col-row equal size
+            print("Error: not square.")
+            return
         clean_row = []
         for char in line:
+
             if char in "KQBRP.":
                 clean_row.append(char)
+
                 if char == "K":
                     king_count += 1
+
+                    if king_count > 1:
+                        print("Error: There is no king.")
+                        return
+            # not piece(PQBRP)
             else:
                 clean_row.append('.')
+
         rows.append(clean_row)
-
-    if king_count != 1:
-        print("Error")
-        return
-
-    if not rows or len(rows) != len(rows[0]):
-        print("Error wrong format")
-        return
 
     ischeck = False
 
     for i in range(len(rows)):
 
-        if len(rows[i]) != len(rows):
-            print("Error wrong format")
-            return
+        #if len(rows[i]) != len(rows):
+            #print("Error: wrong format.")
+            #return
 
         for j in range(len(rows[i])):
             piece = rows[i][j]
 
             if piece == "P":
-                if checkP(i, j, rows): ischeck = True
+                ischeck = checkP(i, j, rows)
             elif piece == "B":
-                if checkB(i, j, rows): ischeck = True
+                ischeck = checkP(i, j, rows)
             elif piece == "R":
-                if checkR(i, j, rows): ischeck = True
+                ischeck = checkP(i, j, rows)
             elif piece == "Q":
-                if checkQ(i, j, rows): ischeck = True
+                ischeck = checkP(i, j, rows)
 
             if ischeck:
                 break
