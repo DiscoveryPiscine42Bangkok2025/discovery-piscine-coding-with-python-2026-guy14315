@@ -17,16 +17,19 @@ def checkmate(board):
                 clean_row.append(char)
                 if char == "K":
                     king_count += 1
+                    if king_count > 1:
+                        print("Error: king more than 1")
+                        return
             else:
                 clean_row.append('.')
         rows.append(clean_row)
 
     if king_count != 1:
-        print("Error")
+        print("Error: no king found")
         return
 
     if not rows or len(rows) != len(rows[0]):
-        print("Error wrong format")
+        print("Error: wrong format")
         return
 
     ischeck = False
